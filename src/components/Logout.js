@@ -8,11 +8,13 @@ const Logout = () => {
     useEffect(() => {
         const token = localStorage.getItem('token')
 
-        axios.post('http://localhost:9000/api/logout', {
-            header: token
+        axios.post('http://localhost:9000/api/logout', {}, {
+            headers: {
+                authorization: token
+            }
         })
         .then(resp => {
-            console.log('Logout.js axios resp =>', resp);
+            // console.log('Logout.js axios resp =>', resp);
             localStorage.removeItem('token');
             push('/login');
         })
